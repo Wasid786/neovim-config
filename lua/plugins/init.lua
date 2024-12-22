@@ -177,6 +177,11 @@ local custom_plugins = exist and type(custom) == "table" and custom.plugins or {
 
 -- Check if there is any custom plugins
 -- local ok, custom_plugins = pcall(require, "plugins.custom")
+-- After loading other plugin configurations, but before calling lazy.setup()
+require("plugins.configs.terminal")
+
+-- Now set up lazy loading for your plugins
+
 require("lazy").setup({
     spec = { builtin_plugins, custom_plugins },
     lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
